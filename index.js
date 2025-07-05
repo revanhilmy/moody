@@ -264,7 +264,7 @@ async function sendDailyMoodMessage() {
 
         // Send message
         const message = await channel.send({
-            // content: 'apa mood kamu hari ini?',
+            content: 'apa mood kamu hari ini?',
             embeds: [embed]
         });
 

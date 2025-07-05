@@ -15,7 +15,7 @@ const client = new Client({
 });
 
 // Configuration
-const CHANNEL_ID = "1352471487000608899";  // Channel where daily message will be sent
+const CHANNEL_ID = "1114073322813132821";  // Channel where daily message will be sent
 const DAILY_MESSAGE = "apa mood kamu hari ini?";
 const GUILD_ID = '1094177674521493554'; // Replace with your guild ID
 
@@ -28,6 +28,7 @@ const MOOD_ROLES = {
     "😰": "1390958719466078298",  // discomfort
     "😡": "1390959135465537566",  // angry
     "😒": "1390959195905327188",  // envy
+    "😔": "1390964588068995092",  // gloomy
 };
 
 // Store active mood messages
@@ -144,7 +145,20 @@ client.on('messageReactionAdd', async (reaction, user) => {
             return;
         }
 
-        // Add the role
+        // Remove all other mood roles first
+        const allMoodRoles = Object.values(MOOD_ROLES);
+        const currentMoodRoles = member.roles.cache.filter(r => allMoodRoles.includes(r.id));
+        
+        if (currentMoodRoles.size > 0) {
+            try {
+                await member.roles.remove(currentMoodRoles);
+                console.log(`✅ Removed previous mood roles from ${member.displayName}`);
+            } catch (error) {
+                console.error('❌ Error removing previous mood roles:', error);
+            }
+        }
+
+        // Add the new role
         try {
             await member.roles.add(role);
             console.log(`✅ Added role ${role.name} to ${member.displayName}`);
@@ -226,8 +240,8 @@ async function sendDailyMoodMessage() {
             .setTitle('🎭 Daily Mood Check!')
             .setDescription(DAILY_MESSAGE)
             .addFields(
-                { name: '**Pilih mood kamu:**', value: '😊 Joy\n😢 Sad\n😐 Neutral\n😴 Boredom\n😰 Discomfort\n😡 Angry\n😒 Envy', inline: true },
-                { name: '**Cara pakai:**', value: 'Click emoji untuk dapat role\nClick lagi untuk lepas role', inline: true }
+                { name: '**Pilih mood kamu:**', value: '😊 Joy\n😢 Sad\n😐 Neutral\n😴 Boredom\n😰 Discomfort\n😡 Angry\n😒 Envy\n😔 Gloomy', inline: false },
+                { name: '**Cara pakai:**', value: 'Click emoji untuk dapat role\nClick emoji lain untuk ganti mood', inline: false }
             )
             .setTimestamp()
             .setFooter({ text: 'Daily mood tracker' });

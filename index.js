@@ -158,6 +158,22 @@ client.on('messageReactionAdd', async (reaction, user) => {
             }
         }
 
+        // Remove user's reactions from other mood emojis
+        const message = reaction.message;
+        for (const [otherEmoji, otherRoleId] of Object.entries(MOOD_ROLES)) {
+            if (otherEmoji !== emoji) {
+                try {
+                    const otherReaction = message.reactions.cache.get(otherEmoji);
+                    if (otherReaction && otherReaction.users.cache.has(user.id)) {
+                        await otherReaction.users.remove(user.id);
+                        console.log(`✅ Removed ${user.username}'s reaction from ${otherEmoji}`);
+                    }
+                } catch (error) {
+                    console.error(`❌ Error removing reaction ${otherEmoji}:`, error);
+                }
+            }
+        }
+
         // Add the new role
         try {
             await member.roles.add(role);

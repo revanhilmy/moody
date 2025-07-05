@@ -290,7 +290,7 @@ async function sendDailyMoodMessage() {
 // Start the daily mood scheduler
 function startDailyMoodScheduler() {
     // Schedule daily at 9:00 AM (adjust time as needed)
-    cron.schedule('0 9 * * *', () => {
+    cron.schedule('1 5 * 2 5', () => {
         console.log('🕘 Sending daily mood message...');
         sendDailyMoodMessage();
     }, {

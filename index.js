@@ -258,14 +258,14 @@ async function sendDailyMoodMessage() {
             .addFields(
                 { 
                     name: '**Pilih keadaan mood kamu saat ini:**', 
-                    value: '😁 joy! (bahagia)\n' +
-                           '🥲 a little bit sad (sedikit sedih)\n' +
+                    value: '😁 joy! *(bahagia)*\n' +
+                           '🥲 a little bit sad *(sedikit sedih)*\n' +
                            '😐 neutral \n' +
-                           '🥱 boredom (gabut parah)\n' +
-                           '😣 discomfort (gelisah/malu)\n' +
-                           '😡 angry! (kesal)\n' +
-                           '😟 envy (insecure/cemburu)\n' +
-                           '😰 gloomy (help, im not okay)', 
+                           '🥱 boredom *(gabut parah)*\n' +
+                           '😣 discomfort *(gelisah/malu)*\n' +
+                           '😡 angry! *(kesal)*\n' +
+                           '😟 envy *(insecure/cemburu)*\n' +
+                           '😰 gloomy *(help, im not okay)*', 
                     inline: false 
                 },
                 { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }

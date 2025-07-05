@@ -16,7 +16,7 @@ const client = new Client({
 
 // Configuration
 const CHANNEL_ID = "1352471487000608899";  // Channel where daily message will be sent
-const DAILY_MESSAGE = "apa mood kamu hari ini?";
+const DAILY_MESSAGE = "";
 const GUILD_ID = '1094177674521493554'; // Replace with your guild ID
 
 // Role IDs and their corresponding emojis
@@ -256,15 +256,15 @@ async function sendDailyMoodMessage() {
             .setTitle('🎭 Daily Mood Check!')
             .setDescription(DAILY_MESSAGE)
             .addFields(
-                { name: '**Pilih mood kamu:**', value: '😊 Joy\n😢 Sad\n😐 Neutral\n😴 Boredom\n😰 Discomfort\n😡 Angry\n😒 Envy\n😔 Gloomy', inline: false },
-                { name: '**Cara pakai:**', value: 'Click emoji untuk dapat role\nClick emoji lain untuk ganti mood', inline: false }
+                { name: '**Pilih mood kamu saat ini:**', value: '😊 Joy\n😢 Sad\n😐 Neutral\n😴 Boredom\n😰 Discomfort\n😡 Angry\n😒 Envy\n😔 Gloomy', inline: false },
+                { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
             )
             .setTimestamp()
-            .setFooter({ text: 'Daily mood tracker' });
+            // .setFooter({ text: 'Daily mood tracker' });
 
         // Send message
         const message = await channel.send({
-            content: '🎭 **Daily Mood Check!** Pilih mood kamu hari ini!',
+            // content: 'apa mood kamu hari ini?',
             embeds: [embed]
         });
 

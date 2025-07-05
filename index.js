@@ -234,8 +234,8 @@ client.on('messageReactionRemove', async (reaction, user) => {
     }
 });
 
-// Function to send daily mood message
-async function sendDailyMoodMessage() {
+// Function to send daily mood message with time-specific content
+async function sendDailyMoodMessage(timeOfDay = 'morning') {
     try {
         const guild = client.guilds.cache.get(GUILD_ID);
         if (!guild) {
@@ -250,34 +250,49 @@ async function sendDailyMoodMessage() {
             return;
         }
 
-        // Create embed
-        const embed = new EmbedBuilder()
-            .setColor('#5865F2')
-            .setTitle('🎭 Daily Mood Check!')
-            // .setDescription(DAILY_MESSAGE)
-            .addFields(
-                { 
-                    name: '**Pilih keadaan mood kamu saat ini:**', 
-                    value: '😁 joy! *(bahagia)*\n' +
-                           '🥲 a little bit sad *(sedikit sedih)*\n' +
-                           '😐 neutral \n' +
-                           '🥱 boredom *(gabut parah)*\n' +
-                           '😣 discomfort *(gelisah/malu)*\n' +
-                           '😡 angry! *(kesal)*\n' +
-                           '😟 envy *(insecure/cemburu)*\n' +
-                           '😰 gloomy *(help, im not okay)*', 
-                    inline: false 
-                },
-                { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
-            )
-            .setTimestamp()
-            // .setFooter({ text: 'Daily mood tracker' });
-
-        // Send message
-        // const message = await channel.send({
-        //     content: 'apa mood kamu hari ini?',
-        //     embeds: [embed]
-        // });
+        // Create different embeds based on time of day
+        let embed;
+        if (timeOfDay === 'morning') {
+            embed = new EmbedBuilder()
+                .setColor('#FFD700') // Gold color for morning
+                .setTitle('🌅 Good Morning! Daily Mood Check!')
+                .addFields(
+                    { 
+                        name: '**Pilih keadaan mood kamu saat ini:**', 
+                        value: '😁 joy! *(bahagia)*\n' +
+                               '🥲 a little bit sad *(sedikit sedih)*\n' +
+                               '😐 neutral \n' +
+                               '🥱 boredom *(gabut parah)*\n' +
+                               '😣 discomfort *(gelisah/malu)*\n' +
+                               '😡 angry! *(kesal)*\n' +
+                               '😟 envy *(insecure/cemburu)*\n' +
+                               '😰 gloomy *(help, im not okay)*', 
+                        inline: false 
+                    },
+                    { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
+                )
+                .setTimestamp();
+        } else {
+            embed = new EmbedBuilder()
+                .setColor('#9370DB') // Purple color for evening
+                .setTitle('🌆 Good Evening! How was your day?')
+                .addFields(
+                    { 
+                        name: '**Pilih keadaan mood kamu saat ini:**', 
+                        value: '😁 joy! *(bahagia)*\n' +
+                               '🥲 a little bit sad *(sedikit sedih)*\n' +
+                               '😐 neutral \n' +
+                               '🥱 boredom *(gabut parah)*\n' +
+                               '😣 discomfort *(gelisah/malu)*\n' +
+                               '😡 angry! *(kesal)*\n' +
+                               '😟 envy *(insecure/cemburu)*\n' +
+                               '😰 gloomy *(help, im not okay)*', 
+                        inline: false 
+                    },
+                    { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
+                )
+                .setTimestamp();
+        }
 
         // Send message
         const message = await channel.send({
@@ -296,25 +311,36 @@ async function sendDailyMoodMessage() {
             }
         }
 
-        console.log('✅ Daily mood message sent successfully');
+        console.log(`✅ ${timeOfDay} mood message sent successfully`);
 
     } catch (error) {
         console.error('❌ Error sending daily mood message:', error);
     }
 }
 
-// Start the daily mood scheduler
+// Start the daily mood scheduler - now with two schedules
 function startDailyMoodScheduler() {
-    // Schedule daily at 9:00 AM (adjust time as needed)
+    // Schedule morning message at 9:00 AM
     cron.schedule('0 9 * * *', () => {
-        console.log('🕘 Sending daily mood message...');
-        sendDailyMoodMessage();
+        console.log('🌅 Sending morning mood message...');
+        sendDailyMoodMessage('morning');
     }, {
         scheduled: true,
-        timezone: "Asia/Jakarta" // Adjust timezone as needed
+        timezone: "Asia/Jakarta"
     });
 
-    console.log('📅 Daily mood scheduler started (9:00 AM WIB)');
+    // Schedule evening message at 6:00 PM (18:00)
+    cron.schedule('0 18 * * *', () => {
+        console.log('🌆 Sending evening mood message...');
+        sendDailyMoodMessage('evening');
+    }, {
+        scheduled: true,
+        timezone: "Asia/Jakarta"
+    });
+
+    console.log('📅 Daily mood scheduler started:');
+    console.log('   🌅 Morning: 9:00 AM WIB');
+    console.log('   🌆 Evening: 6:00 PM WIB');
 }
 
 // Handle mood test command
@@ -331,12 +357,17 @@ async function handleMoodTestCommand(interaction) {
 
         // Send acknowledgment
         await interaction.reply({
-            content: '✅ Test mood message sent!',
+            content: '✅ Test mood messages sent! (Both morning and evening versions)',
             ephemeral: true
         });
 
-        // Send the mood message
-        await sendDailyMoodMessage();
+        // Send both versions for testing
+        await sendDailyMoodMessage('morning');
+        
+        // Wait a moment before sending the second message
+        setTimeout(async () => {
+            await sendDailyMoodMessage('evening');
+        }, 2000);
 
     } catch (error) {
         console.error('❌ Error in handleMoodTestCommand:', error);
@@ -357,8 +388,10 @@ async function handleMoodStatusCommand(interaction) {
             .addFields(
                 { name: '**Active Messages:**', value: `${activeMoodMessages.size}`, inline: true },
                 { name: '**Target Channel:**', value: `<#${CHANNEL_ID}>`, inline: true },
-                { name: '**Daily Schedule:**', value: '9:00 AM WIB', inline: true },
-                { name: '**Total Mood Roles:**', value: `${Object.keys(MOOD_ROLES).length}`, inline: true }
+                { name: '**Morning Schedule:**', value: '9:00 AM WIB', inline: true },
+                { name: '**Evening Schedule:**', value: '6:00 PM WIB', inline: true },
+                { name: '**Total Mood Roles:**', value: `${Object.keys(MOOD_ROLES).length}`, inline: true },
+                { name: '**Messages per Day:**', value: '2', inline: true }
             )
             .setTimestamp();
 

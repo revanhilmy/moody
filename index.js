@@ -21,13 +21,14 @@ const GUILD_ID = '1094177674521493554'; // Replace with your guild ID
 
 // Role IDs and their corresponding emojis
 const MOOD_ROLES = {
-    "😁": "1390957468561182820",  // joy
-    "🥲": "1390957513007956108",  // sad
-    "😐": "1390957549599068311",  // neutral
+    "😁": "1390957468561182820",  // joyful
+    "😌": "1391038665043476620",  // relaxed
     "🥱": "1390958534317051904",  // boredom
-    "😣": "1390958719466078298",  // discomfort
+    "😶": "1390957549599068311",  // neutral
+    "😒": "1390959195905327188",  // envy
     "😡": "1390959135465537566",  // angry
-    "😟": "1390959195905327188",  // envy
+    "🥹": "1390957513007956108",  // sad
+    "😣": "1390958719466078298",  // anxiety
     "😰": "1390964588068995092",  // gloomy
 };
 
@@ -255,17 +256,18 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
         if (timeOfDay === 'morning') {
             embed = new EmbedBuilder()
                 .setColor('#FFD700') // Gold color for morning
-                .setTitle('🌅 Good Morning! Daily Mood Check!')
+                .setTitle('🌅 Pagi, Daily Mood Check!')
                 .addFields(
                     { 
-                        name: '**Pilih keadaan mood kamu saat ini:**', 
-                        value: '😁 joy! *(bahagia)*\n' +
-                               '🥲 a little bit sad *(sedikit sedih)*\n' +
-                               '😐 neutral \n' +
+                        name: '**Bagaimana keadaan mood kamu saat ini?**', 
+                        value: '😁 joyful *(bahagia)*\n' +
+                               '😌 relaxed *(tenang)*\n' +
                                '🥱 boredom *(gabut parah)*\n' +
-                               '😣 discomfort *(gelisah/malu)*\n' +
-                               '😡 angry! *(kesal)*\n' +
-                               '😟 envy *(insecure/cemburu)*\n' +
+                               '😶 neutral \n' +
+                               '😒 envy *(iri/julid)*\n' +
+                               '😡 angry! *(ngamuk)*\n' +
+                               '🥹 sadness *(sedih)*\n' +
+                               '😣 anxiety *(gelisah/stress)*\n' +
                                '😰 gloomy *(help, im not okay)*', 
                         inline: false 
                     },
@@ -275,17 +277,18 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
         } else {
             embed = new EmbedBuilder()
                 .setColor('#9370DB') // Purple color for evening
-                .setTitle('🌆 Good Evening! How was your day?')
+                .setTitle('🌆 Sore, gimana hari kamu?')
                 .addFields(
                     { 
-                        name: '**Pilih keadaan mood kamu saat ini:**', 
-                        value: '😁 joy! *(bahagia)*\n' +
-                               '🥲 a little bit sad *(sedikit sedih)*\n' +
-                               '😐 neutral \n' +
+                        name: '**Bagaimana keadaan mood kamu saat ini?**', 
+                        value: '😁 joyful *(bahagia)*\n' +
+                               '😌 relaxed *(tenang)*\n' +
                                '🥱 boredom *(gabut parah)*\n' +
-                               '😣 discomfort *(gelisah/malu)*\n' +
-                               '😡 angry! *(kesal)*\n' +
-                               '😟 envy *(insecure/cemburu)*\n' +
+                               '😶 neutral \n' +
+                               '😒 envy *(iri/julid)*\n' +
+                               '😡 angry! *(ngamuk)*\n' +
+                               '🥹 sadness *(sedih)*\n' +
+                               '😣 anxiety *(gelisah/stress)*\n' +
                                '😰 gloomy *(help, im not okay)*', 
                         inline: false 
                     },

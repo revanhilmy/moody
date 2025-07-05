@@ -254,7 +254,7 @@ async function sendDailyMoodMessage() {
         const embed = new EmbedBuilder()
             .setColor('#5865F2')
             .setTitle('🎭 Daily Mood Check!')
-            .setDescription(DAILY_MESSAGE)
+            // .setDescription(DAILY_MESSAGE)
             .addFields(
                 { name: '**Pilih mood kamu saat ini:**', value: '😁 Joy\n🥲 Sad\n😐 Neutral\n😴 Boredom\n😣 Discomfort\n😡 Angry\n😕 Envy\n🥺 Gloomy', inline: false },
                 { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
@@ -263,10 +263,15 @@ async function sendDailyMoodMessage() {
             // .setFooter({ text: 'Daily mood tracker' });
 
         // Send message
+        // const message = await channel.send({
+        //     content: 'apa mood kamu hari ini?',
+        //     embeds: [embed]
+        // });
+
+        // Send message
         const message = await channel.send({
-            content: 'apa mood kamu hari ini?',
             embeds: [embed]
-        });
+        });        
 
         // Add to active messages
         activeMoodMessages.add(message.id);
@@ -290,7 +295,7 @@ async function sendDailyMoodMessage() {
 // Start the daily mood scheduler
 function startDailyMoodScheduler() {
     // Schedule daily at 9:00 AM (adjust time as needed)
-    cron.schedule('38 15 * * *', () => {
+    cron.schedule('45 15 * * *', () => {
         console.log('🕘 Sending daily mood message...');
         sendDailyMoodMessage();
     }, {

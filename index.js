@@ -21,14 +21,14 @@ const GUILD_ID = '1094177674521493554'; // Replace with your guild ID
 
 // Role IDs and their corresponding emojis
 const MOOD_ROLES = {
-    "😊": "1390957468561182820",  // joy
-    "😢": "1390957513007956108",  // sad
+    "😁": "1390957468561182820",  // joy
+    "🥲": "1390957513007956108",  // sad
     "😐": "1390957549599068311",  // neutral
     "😴": "1390958534317051904",  // boredom
-    "😰": "1390958719466078298",  // discomfort
+    "😣": "1390958719466078298",  // discomfort
     "😡": "1390959135465537566",  // angry
-    "😒": "1390959195905327188",  // envy
-    "😔": "1390964588068995092",  // gloomy
+    "😕": "1390959195905327188",  // envy
+    "🥺": "1390964588068995092",  // gloomy
 };
 
 // Store active mood messages
@@ -256,7 +256,7 @@ async function sendDailyMoodMessage() {
             .setTitle('🎭 Daily Mood Check!')
             .setDescription(DAILY_MESSAGE)
             .addFields(
-                { name: '**Pilih mood kamu saat ini:**', value: '😊 Joy\n😢 Sad\n😐 Neutral\n😴 Boredom\n😰 Discomfort\n😡 Angry\n😒 Envy\n😔 Gloomy', inline: false },
+                { name: '**Pilih mood kamu saat ini:**', value: '😁 Joy\n🥲 Sad\n😐 Neutral\n😴 Boredom\n😣 Discomfort\n😡 Angry\n😕 Envy\n🥺 Gloomy', inline: false },
                 { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
             )
             .setTimestamp()

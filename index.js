@@ -15,7 +15,7 @@ const client = new Client({
 });
 
 // Configuration
-const CHANNEL_ID = "1352471487000608899";  // Channel where daily message will be sent
+const CHANNEL_ID = "1094177675008036913";  // Channel where daily message will be sent
 const DAILY_MESSAGE = "a";
 const GUILD_ID = '1094177674521493554'; // Replace with your guild ID
 

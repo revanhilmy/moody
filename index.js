@@ -263,7 +263,7 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
                         value: '😁 joyful *(bahagia)*\n' +
                                '😌 relaxed *(tenang)*\n' +
                                '🥱 boredom *(gabut parah)*\n' +
-                               '😶 neutral \n' +
+                               '😶 neutral *(dont know what i feel)*\n' +
                                '😒 envy *(iri/julid)*\n' +
                                '😡 angry! *(ngamuk)*\n' +
                                '🥹 sadness *(sedih)*\n' +
@@ -284,7 +284,7 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
                         value: '😁 joyful *(bahagia)*\n' +
                                '😌 relaxed *(tenang)*\n' +
                                '🥱 boredom *(gabut parah)*\n' +
-                               '😶 neutral \n' +
+                               '😶 neutral *(dont know what i feel)*\n' +
                                '😒 envy *(iri/julid)*\n' +
                                '😡 angry! *(ngamuk)*\n' +
                                '🥹 sadness *(sedih)*\n' +

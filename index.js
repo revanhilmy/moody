@@ -259,7 +259,7 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
                 .setTitle('🌅 Pagi, Daily Mood Check!')
                 .addFields(
                     { 
-                        name: '**Bagaimana keadaan mood kamu saat ini?**', 
+                        name: '**Gimana keadaan mood kamu saat ini?**', 
                         value: '😁 joyful *(bahagia)*\n' +
                                '😌 relaxed *(tenang)*\n' +
                                '🥱 boredom *(gabut parah)*\n' +
@@ -280,7 +280,7 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
                 .setTitle('🌆 Sore, gimana hari kamu?')
                 .addFields(
                     { 
-                        name: '**Bagaimana keadaan mood kamu saat ini?**', 
+                        name: '**Gimana keadaan mood kamu saat ini?**', 
                         value: '😁 joyful *(bahagia)*\n' +
                                '😌 relaxed *(tenang)*\n' +
                                '🥱 boredom *(gabut parah)*\n' +

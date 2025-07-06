@@ -271,7 +271,7 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
                                '😰 gloomy *(help, im not okay)*', 
                         inline: false 
                     },
-                    { name: '*Keterangan:*', value: '- *Click emoji untuk dapat role mood*\n- *Click emoji lain untuk ganti role mood*', inline: false }
+                    { name: '*Keterangan:*', value: '- *React/unreact untuk ubah role mood*\n- *Bisa otomatis mengganti role lama*', inline: false }
                 )
                 .setTimestamp();
         } else {

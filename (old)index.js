@@ -15,7 +15,7 @@ const client = new Client({
 });
 
 // Configuration
-const CHANNEL_ID = "1352471487000608899";  // Channel where daily message will be sent
+const CHANNEL_ID = "1094177675008036913";  // Channel where daily message will be sent
 const DAILY_MESSAGE = "a";
 const GUILD_ID = '1094177674521493554'; // Replace with your guild ID
 
@@ -260,15 +260,15 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
                 .addFields(
                     { 
                         name: '*Gimana keadaan mood kamu saat ini?*', 
-                        value: '😁 <@&1390957468561182820> *(bahagia)*\n' +
-                               '😌 <@&1391038665043476620> *(tenang)*\n' +
-                               '🥱 <@&1390958534317051904> *(gabut parah)*\n' +
-                               '😶 <@&1390957549599068311> *(dont know what i feel)*\n' +
-                               '😒 <@&1390959195905327188> *(iri/julid)*\n' +
-                               '😡 <@&1390959135465537566> *(ngamuk)*\n' +
-                               '🥹 <@&1390957513007956108> *(sedih)*\n' +
-                               '😣 <@&1390958719466078298> *(gelisah/stress)*\n' +
-                               '😰 <@&1390964588068995092> *(help, im not okay)*', 
+                        value: '😁 joyful *(bahagia)*\n' +
+                               '😌 relaxed *(tenang)*\n' +
+                               '🥱 boredom *(gabut parah)*\n' +
+                               '😶 neutral *(dont know what i feel)*\n' +
+                               '😒 envy *(iri/julid)*\n' +
+                               '😡 angry! *(ngamuk)*\n' +
+                               '🥹 sadness *(sedih)*\n' +
+                               '😣 anxiety *(gelisah/stress)*\n' +
+                               '😰 gloomy *(help, im not okay)*', 
                         inline: false 
                     },
                     { name: '*Keterangan:*', value: '- *React/unreact untuk ubah role mood*\n- *Bisa otomatis mengganti role lama*', inline: false }
@@ -277,19 +277,19 @@ async function sendDailyMoodMessage(timeOfDay = 'morning') {
         } else {
             embed = new EmbedBuilder()
                 .setColor('#9370DB') // Purple color for evening
-                .setTitle('🌆 Sore, Gimana hari kamu?')
+                .setTitle('🌆 Sore, gimana hari kamu?')
                 .addFields(
                     { 
-                        name: '*Apa mood-nya baik-baik saja?*', 
-                        value: '😁 <@&1390957468561182820> *(bahagia)*\n' +
-                               '😌 <@&1391038665043476620> *(tenang)*\n' +
-                               '🥱 <@&1390958534317051904> *(gabut parah)*\n' +
-                               '😶 <@&1390957549599068311> *(dont know what i feel)*\n' +
-                               '😒 <@&1390959195905327188> *(iri/julid)*\n' +
-                               '😡 <@&1390959135465537566> *(ngamuk)*\n' +
-                               '🥹 <@&1390957513007956108> *(sedih)*\n' +
-                               '😣 <@&1390958719466078298> *(gelisah/stress)*\n' +
-                               '😰 <@&1390964588068995092> *(help, im not okay)*', 
+                        name: '*Gimana keadaan mood kamu saat ini?*', 
+                        value: '😁 joyful *(bahagia)*\n' +
+                               '😌 relaxed *(tenang)*\n' +
+                               '🥱 boredom *(gabut parah)*\n' +
+                               '😶 neutral *(dont know what i feel)*\n' +
+                               '😒 envy *(iri/julid)*\n' +
+                               '😡 angry! *(ngamuk)*\n' +
+                               '🥹 sadness *(sedih)*\n' +
+                               '😣 anxiety *(gelisah/stress)*\n' +
+                               '😰 gloomy *(help, im not okay)*', 
                         inline: false 
                     },
                     { name: '*Keterangan:*', value: '- *React/unreact untuk ubah role mood*\n- *Bisa otomatis mengganti role lama*', inline: false }

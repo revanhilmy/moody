@@ -11,7 +11,16 @@ const client = new Client({
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessageReactions
-    ]
+    ],
+    presence: {
+        status: 'online', // atau 'idle', 'dnd', 'invisible'
+        activities: [
+            {
+                name: '💬general-chat',
+                type: 3 // 0 = Playing, 1 = Streaming, 2 = Listening, 3 = Watching, 5 = Competing
+            }
+        ]
+    }       
 });
 
 // Configuration
